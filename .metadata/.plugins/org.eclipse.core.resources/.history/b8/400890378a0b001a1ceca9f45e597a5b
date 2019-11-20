@@ -1,0 +1,59 @@
+/***
+* Name: nQueensProblem
+* Author: sigrunarnasigurdardottir
+* Description: 
+* Tags: Tag1, Tag2, TagN
+***/
+
+model nQueensProblem
+
+/* Insert your model definition here */
+
+global {
+	
+	int nQueens <- 0;
+	int x <- 10;
+	int y <- 10;
+	
+	init {
+		create queen number: nQueens;
+		list<list<rgb>> col_list <- [];
+		loop i from: 1 to: x
+		{
+			list<rgb> col <- [];
+			
+			loop i from: 1 to: x
+			{
+				col << (((i + i) mod 2) = 0) ? #black : #white;
+			}
+			col_list << col;
+			
+		}
+				list<rgb> col <- [];
+		loop i from: 1 to: x
+		{
+			col << #yellow;
+		}
+		col_list << col;
+				
+		ask cells
+		{
+			color <- col_list[grid_y][grid_x];
+		}
+	}
+}
+
+species queen{
+	
+}
+
+grid cells width: x height: y;
+
+experiment nQueensProblem type:gui {
+	output {
+		display problem {
+			species queen;
+			grid cells;
+		}
+	}
+}
