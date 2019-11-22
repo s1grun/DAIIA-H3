@@ -12,7 +12,7 @@ model nQueensProblem
 global {
 	
 //	int nQueens <- 0;
-	int num <- 8;
+	int num <- 3;
 //	int column <- 10;
 	int inital_location<-100/(2*num);
 	
@@ -122,7 +122,7 @@ species Queen {
 		int x <- my_cell.grid_x;
 		int y <- my_cell.grid_y;
 		write "new cell: ("+ new_cell.grid_x+","+new_cell.grid_y+ ") predecessor cell "+ my_cell.grid_x+","+my_cell.grid_y;
-		if(newx<=x+1 and newx>=x-1 and newy>=y-1 and newy<=y+1) or (x=newx or y=newy){
+		if (x=newx or y=newy) or(newx-x = newy-y) or(newx-x = y- newy){
 			
 			return false;
 		}else{
