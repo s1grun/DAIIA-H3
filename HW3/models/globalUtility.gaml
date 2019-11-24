@@ -1,12 +1,11 @@
 /***
-* Name: visitStage
-* Author: sigrunarnasigurdardottir
+* Name: globalUtility
+* Author: weng
 * Description: 
 * Tags: Tag1, Tag2, TagN
 ***/
 
-model visitStage
-
+model globalUtility
 
 /* Insert your model definition here */
 
@@ -79,14 +78,9 @@ species Guests skills:[fipa,moving]{
 				Stage sender <- Stage(agent(msg.sender));
 				my_color <-#blue;
 				remove [fav_stage,util] from:act_util_list;
-				if(length(act_util_list)>1){
-					util <- float(last(act_util_list)[1]);
-					fav_stage <- last(act_util_list)[0];
-					my_color <- fav_stage.stage_color;
-					status <-1;
-				}
-				
-				
+				util <- float(last(act_util_list)[1]);
+				fav_stage <- last(act_util_list)[0];
+				my_color <- fav_stage.stage_color;
 			}	
 		}
 		
@@ -150,12 +144,7 @@ species Stage skills:[fipa]{
 	rgb stage_color;
 	
 	aspect { 
-		if(ongoing = true){
-			draw cube(4) color:stage_color;
-		}else{
-			draw cube(4) color:#gray;
-		}
-		
+		draw cube(4) color:stage_color;
 	}
 	
 	init{
@@ -192,7 +181,7 @@ species Stage skills:[fipa]{
 			famous <- rnd (0.0, 1.0);
 			write name + ": concert is starting soon";
 			do start_conversation with: [to :: list(Guests), protocol :: 'fipa-contract-net', performative :: 'inform', contents :: ['start', betterLightShow, betterVisuals, goodSoundSystem, famous, rockMusic, popMusic, folksMusic, jazzMusic] ];
-			whenToEnd <-int(time+10*rnd(10,20));
+			whenToEnd <-int(time+10*rnd(10,15));
 			ongoing <- true;
 //		}
 		
