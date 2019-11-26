@@ -77,8 +77,10 @@ species Guests skills:[fipa,moving]{
 //				write name +"reveice :"+msg.contents[0];
 				status<-3;
 				Stage sender <- Stage(agent(msg.sender));
-				my_color <-#blue;
+				my_color <- #blue;
+//				write act_util_list;
 				remove [fav_stage,util] from:act_util_list;
+//				write act_util_list;
 				if(length(act_util_list)>1){
 					util <- float(last(act_util_list)[1]);
 					fav_stage <- last(act_util_list)[0];
